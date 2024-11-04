@@ -1,0 +1,31 @@
+def amusement_park():
+    health = input("Are you healthy? (yes/no): ").strip().lower()
+    age = int(input("Enter your age: "))
+    height = float(input("Enter your height in cm: "))
+    weight = float(input("Enter your weight in kg: "))
+    games = ["Giant Wheel", "Ghost House", "Roller Coaster", "Dare Drop", "Sky Pendulum"]
+    if health == "yes":
+        if height <= 91.44:  
+            print("Sorry, you cannot play any games due to height restrictions.")
+        elif weight >= 120:
+            print("Sorry, you cannot play any games due to weight restrictions.")
+        elif age < 11 or age > 58:
+            print("Sorry, you cannot play any games due to age restrictions.")
+        elif 11 <= age <= 16:
+            print("You can play the following games:")
+            for game in games:
+                if game not in ["Sky Pendulum", "Giant Wheel"]:
+                    print(f"- {game}")
+        elif 17 <= age <= 58:
+            print("You can play all the games:")
+            for game in games:
+                print(f"- {game}")
+        else:
+            print("Invalid age input.")
+    else:
+        print("You need to be healthy to play the games.")
+amusement_park()
+
+
+            
+
