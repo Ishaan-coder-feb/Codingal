@@ -1,0 +1,8 @@
+num = int(input("Enter a number: "))
+odd_numbers = [i for i in range(num) if i % 2 != 0]
+odd_numbers_2 = [i for i in range(num) if i % 2 != 0]
+fruits = ["apple", "banana", "cherry", "date", "elderberry"]
+capitalized_fruits = [fruit.capitalize() for fruit in fruits]
+print("Odd numbers under input:", odd_numbers)
+print("Another list of odd numbers:", odd_numbers_2)
+print("Capitalized fruits list:", capitalized_fruits)   
