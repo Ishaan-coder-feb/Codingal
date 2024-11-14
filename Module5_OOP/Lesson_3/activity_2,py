@@ -1,0 +1,23 @@
+
+class Vehicle:
+    def __init__(self, name, max_speed, mileage):
+        self.name = name
+        self.max_speed = max_speed
+        self.mileage = mileage
+
+    def display_info(self):
+        return f"Vehicle Name: {self.name}, Maximum Speed: {self.max_speed} km/h, Mileage: {self.mileage} km/l"
+
+class Bus(Vehicle):
+    def __init__(self, name, max_speed, mileage, bus_type):
+    
+        super().__init__(name, max_speed, mileage)
+        self.bus_type = bus_type  
+
+    def display_info(self):
+        return f"Bus Type: {self.bus_type}, {super().display_info()}"
+school_bus = Bus("School Volvo", 180, 12, "School Bus")
+print(school_bus.display_info())
+       
+
+
