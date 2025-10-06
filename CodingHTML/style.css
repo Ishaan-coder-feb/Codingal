@@ -1,0 +1,30 @@
+body {
+  font-family: 'Roboto Slab', serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-family: 'Baloo Tamma 2', cursive;
+  color: #222;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-family: 'Baloo Tamma 2', cursive;
+}
+
+section {
+  padding: 60px 0;
+}
+
+.card-title {
+  font-family: 'Baloo Tamma 2', cursive;
+  color: #444;
+}
+
+.btn-dark {
+  font-weight: bold;
+  padding: 10px 20px;
+}

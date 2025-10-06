@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Space & Human Development Quiz</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #0b0c10;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .quiz-container {
+    background: #1f2833;
+    border-radius: 12px;
+    padding: 20px;
+    width: 600px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  }
+  h1 {
+    color: #66fcf1;
+    text-align: center;
+  }
+  .question {
+    font-size: 20px;
+    margin: 20px 0 10px;
+  }
+  .options {
+    list-style: none;
+    padding: 0;
+  }
+  .options li {
+    background: #45a29e;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .options li:hover {
+    background: #66fcf1;
+  }
+  .feedback {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  .explanation {
+    margin-top: 5px;
+    font-style: italic;
+    color: #f1c40f;
+  }
+  button {
+    margin-top: 20px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #66fcf1;
+    color: #0b0c10;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="quiz-container">
+  <h1>Space & Human Development Quiz</h1>
+  <div id="quiz"></div>
+  <button onclick="nextQuestion()">Next Question</button>
+</div>
+
+<script>
+const quizData = [
+  {
+    question: "Which was the first human mission to land on the Moon?",
+    options: ["Apollo 9", "Apollo 11", "Apollo 13", "Apollo 15"],
+    answer: 1,
+    explanation: "Apollo 11 landed on the Moon in 1969, and Neil Armstrong was the first person to walk on it."
+  },
+  {
+    question: "Who was the first human to travel into space?",
+    options: ["Neil Armstrong", "Yuri Gagarin", "Buzz Aldrin", "Alan Shepard"],
+    answer: 1,
+    explanation: "Yuri Gagarin from the USSR became the first human in space in 1961."
+  },
+  {
+    question: "What does ISS stand for?",
+    options: ["International Space Station", "Interstellar Shuttle System", "In-Space Science", "Independent Space Sector"],
+    answer: 0,
+    explanation: "ISS stands for International Space Station, a habitat for astronauts in orbit."
+  },
+  {
+    question: "Which female astronaut was the first woman in space?",
+    options: ["Sally Ride", "Valentina Tereshkova", "Kalpana Chawla", "Peggy Whitson"],
+    answer: 1,
+    explanation: "Valentina Tereshkova from the USSR was the first woman in space in 1963."
+  },
+  {
+    question: "Which planet is called Earth’s 'twin' because of its similar size?",
+    options: ["Mars", "Venus", "Mercury", "Jupiter"],
+    answer: 1,
+    explanation: "Venus is similar in size and mass to Earth, hence called Earth's twin."
+  },
+  {
+    question: "What year did Neil Armstrong first walk on the Moon?",
+    options: ["1959", "1965", "1969", "1975"],
+    answer: 2,
+    explanation: "Neil Armstrong walked on the Moon in 1969 during the Apollo 11 mission."
+  },
+  {
+    question: "Why is the ISS important for human space development?",
+    options: ["It is a launch pad to Mars", "It allows long-term living and research in space", "It is a tourist hotel in orbit", "It is used only for storing satellites"],
+    answer: 1,
+    explanation: "The ISS allows scientists to study how humans live and work in space for long periods."
+  },
+  {
+    question: "Which planet do scientists believe could be the most likely for future human colonization?",
+    options: ["Jupiter", "Mars", "Venus", "Saturn"],
+    answer: 1,
+    explanation: "Mars is the main candidate for future colonization due to its surface conditions."
+  },
+  {
+    question: "What protects astronauts from floating away during spacewalks?",
+    options: ["Magnetic boots", "Tethers", "Jetpacks only", "Gravity belts"],
+    answer: 1,
+    explanation: "Tethers keep astronauts attached to spacecraft during spacewalks."
+  },
+  {
+    question: "Which challenge is a major problem for humans living in space for long periods?",
+    options: ["Too much oxygen", "Bone and muscle loss", "Getting too tall", "Stronger gravity"],
+    answer: 1,
+    explanation: "Bone and muscle loss occurs due to microgravity in space over long periods."
+  }
+];
+
+let currentQuestion = 0;
+
+function loadQuestion() {
+  const quizDiv = document.getElementById('quiz');
+  quizDiv.innerHTML = '';
+  if(currentQuestion >= quizData.length){
+    quizDiv.innerHTML = "<h2>🎉 Quiz Complete!</h2>";
+    document.querySelector('button').style.display='none';
+    return;
+  }
+  const q = quizData[currentQuestion];
+  const questionElem = document.createElement('div');
+  questionElem.className = 'question';
+  questionElem.innerText = q.question;
+  quizDiv.appendChild(questionElem);
+
+  const optionsList = document.createElement('ul');
+  optionsList.className = 'options';
+  q.options.forEach((option, index) => {
+    const li = document.createElement('li');
+    li.innerText = option;
+    li.onclick = () => checkAnswer(index);
+    optionsList.appendChild(li);
+  });
+  quizDiv.appendChild(optionsList);
+
+  const feedback = document.createElement('div');
+  feedback.className = 'feedback';
+  quizDiv.appendChild(feedback);
+
+  const explanation = document.createElement('div');
+  explanation.className = 'explanation';
+  quizDiv.appendChild(explanation);
+}
+
+function checkAnswer(selected){
+  const q = quizData[currentQuestion];
+  const feedback = document.querySelector('.feedback');
+  const explanation = document.querySelector('.explanation');
+  if(selected === q.answer){
+    feedback.innerText = "✅ Correct!";
+  } else {
+    feedback.innerText = "❌ Wrong!";
+  }
+  explanation.innerText = q.explanation;
+
+  // disable clicking after answer
+  document.querySelectorAll('.options li').forEach(li=> li.onclick=null);
+}
+
+function nextQuestion(){
+  currentQuestion++;
+  loadQuestion();
+}
+
+// initialize first question
+loadQuestion();
+</script>
+</body>
+</html>
